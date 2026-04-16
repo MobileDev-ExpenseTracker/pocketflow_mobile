@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Check Expo project
-        run: npx expo doctor
+        run: npx expo-doctor
 
       - name: Run lint (optional)
         run: npm run lint || echo "No lint config"
