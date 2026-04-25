@@ -1,57 +1,154 @@
-# React Native Expo Redux Template
+# PocketFlow Mobile
+
 [![NPM Version](https://img.shields.io/npm/v/react-native-expo-redux-template)](https://www.npmjs.com/package/react-native-expo-redux-template)
 [![Build Expo OTA](https://github.com/hpccbk/react-native-expo-redux-template/actions/workflows/update.yml/badge.svg)](https://github.com/hpccbk/react-native-expo-redux-template/actions/workflows/update.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MobileDev-ExpenseTracker_pocketflow_mobile&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=MobileDev-ExpenseTracker_pocketflow_mobile)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=MobileDev-ExpenseTracker_pocketflow_mobile&metric=coverage)](https://sonarcloud.io/summary/new_code?id=MobileDev-ExpenseTracker_pocketflow_mobile)
+[![GitHub Actions Tests](https://github.com/MobileDev-ExpenseTracker/pocketflow_mobile/actions/workflows/test_ci.yml/badge.svg)](https://github.com/MobileDev-ExpenseTracker/pocketflow_mobile/actions/workflows/test_ci.yml)
 
+React Native Expo app với Redux state management, TypeScript, và clean architecture.
 
-This is a template for building React Native apps with the Expo framework and Redux for state management. It includes a basic file structure and configuration for setting up a Redux store, along with some example actions and reducers.
+## 🚀 Quick Start
 
-## Getting Started
+### Prerequisites
+- Node.js 18+
+- Expo CLI: `npm install -g expo-cli`
 
-To use this template, you should have the Expo CLI installed on your system. You can install it globally using npm:
-
+### Installation
 ```bash
-npm install -g expo-cli
+# Clone repository
+git clone <repo-url>
+cd pocketflow_mobile
+
+# Install dependencies
+npm install
 ```
 
-To create a new project using this template, please clone this repository. Then run:
-
+### Running the App
 ```bash
-yarn install
+# Start development server
+npm start
+
+# Platform specific
+npm run android  # Android
+npm run ios      # iOS
+npm run web      # Web
 ```
 
-## File Structure
+## 🧪 Testing
 
-The template's file structure is organized as follows:
+```bash
+# Run tests with coverage
+npm test
 
-- `src/`: This folder contains the source code for the template, organized into sub-folders as follows:
+# Run tests in CI mode
+npm run test:ci
 
-  - `Components/`: This folder contains reusable components for the app.
+# View coverage report
+open coverage/lcov-report/index.html
+```
 
-  - `Config/`: This folder contains configuration files for the app, such as API endpoints, environment settings, and theme configuration.
 
-  - `Hooks/`: This folder contains Redux and custom hooks for the app.
+## 📁 Project Structure
 
-  - `Localization/`: This folder contains localization files for the app, allowing for easy translation to different languages.
+```
+src/
+├── Components/      # Reusable UI components
+├── Screens/         # App screens (Container/Presentational pattern)
+├── Store/           # Redux store & reducers
+├── Services/        # API calls & external services
+├── Hooks/           # Custom React hooks
+├── Types/           # TypeScript interfaces
+├── Constants/       # App constants
+├── Utils/           # Helper functions
+├── Localization/    # i18n translations
+├── Navigation/      # Screen routing
+├── Theme/           # UI theme config
+└── index.tsx        # App entry point
 
-  - `Navigation/`: This folder contains navigation files for the app, such as stack navigation, drawer navigation, or tab navigation.
+__tests__/           # Unit tests
+```
 
-  - `Screens/`: This folder contains the main screens of the app.
+### Architecture Patterns
+- **Container/Presentational**: Screens tách UI và logic
+- **Redux Toolkit**: State management với type safety
+- **Barrel Exports**: Clean imports với absolute paths
+- **TypeScript**: Full type safety
 
-  - `Services/`: This folder contains service files for the app, such as API calls or Firebase integration.
 
-  - `Store/`: This folder contains Redux-related files, including the store configuration and reducers.
+## 📋 Development Guidelines
 
-  - `Theme/`: This folder contains files related to the app's visual theme, such as colors, typography, and spacing.
+### Code Quality
+- TypeScript strict mode
+- JSDoc comments cho functions
+- Absolute imports: `@/Components`
+- No `any` types, no `console.log`
 
-## Known Issues
+
+### Git Workflow
+```bash
+# Feature branch
+git checkout -b feature/new-feature
+
+# Commit convention
+git commit -m "feat: add new feature"
+git commit -m "fix: resolve bug"
+git commit -m "test: add unit tests"
+```
+
+## 🐛 Known Issues
 
 ```js
 ApiV2Error: Not Authorized.
 ```
-Reason and how to remove this issue: https://github.com/expo/expo-cli/issues/2436#issuecomment-1308534521
+**Solution**: https://github.com/expo/expo-cli/issues/2436#issuecomment-1308534521
+
+## 📄 License
+
+This project is part of Mobile Development course assignment.
+
+- **Theme/**: Centralized theme configuration (colors, spacing, typography) for consistency across the app.
+
+- **Types/**: TypeScript interfaces and type definitions for better type safety throughout the app.
+
+- **Constants/**: Centralized constants like screen names, storage keys, API endpoints, and default values.
+
+- **Utils/**: Pure utility functions (validators, formatters) that don't depend on React or Redux.
+
+### Coding Standards
+
+- **TypeScript**: All files should be `.tsx` (components) or `.ts` (non-React files) with proper types
+- **Components**: Use functional components with hooks
+- **Imports**: Use barrel exports (index.ts) for cleaner import statements
+- **State Management**: Redux for global state, local state with useState for component-specific state
+- **Testing**: Jest + React Native Testing Library with ≥ 70% coverage
+
+### 4. Naming Conventions
+- **Files**: Use PascalCase for components (`HomeScreen.tsx`), camelCase for utilities (`apiClient.ts`)
+- **Components**: PascalCase (`LoadingSpinner`, `HomeScreen`)
+- **Functions**: camelCase (`useAppDispatch`, `formatDate`)
+- **Constants**: SCREAMING_SNAKE_CASE (`SCREEN_NAMES`, `API_ENDPOINTS`)
 
 
-## Contributing
+## Common Development Tasks
+
+### Add a new screen
+1. Create folder: `src/Screens/MyScreen/`
+2. Create files:
+   - `MyScreen.tsx` (UI)
+   - `MyScreenContainer.tsx` (logic)
+   - `index.ts` (export)
+3. Add route in `src/Navigation/Main/index.tsx`
+4. Create test: `__tests__/MyScreen.test.tsx`
+
+### Add a new utility function
+1. Add to `src/Utils/index.ts` with JSDoc comments
+2. Export from index
+3. Add unit test with examples
+
+### Debug Redux state
+1. Uncomment redux-flipper in `src/Store/index.ts`
+2. Use React Native Debugger to inspect state changes
 
 If you have suggestions for how this template could be improved, or want to report a bug, please open an issue or a pull request. We welcome contributions from the community!
 

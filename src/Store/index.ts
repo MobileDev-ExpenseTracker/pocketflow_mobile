@@ -50,4 +50,8 @@ const persistor = persistStore(store);
 
 setupListeners(store.dispatch);
 
+// Export store types for type-safe Redux usage
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
 export { store, persistor };
