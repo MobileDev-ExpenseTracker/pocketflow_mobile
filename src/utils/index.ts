@@ -39,3 +39,11 @@ export const safeJsonParse = <T>(jsonString: string): T | null => {
     return null;
   }
 };
+
+// Transaction parser utilities
+export {
+  parseTransactionInput,
+  isValidParsedTransaction,
+  getAvailableCategories,
+  type ParsedTransaction,
+} from "./transactionParser";

@@ -13,4 +13,9 @@ if (typeof global.__ExpoImportMetaRegistry === 'undefined') {
 }
 
 // ── Mock react-native-reanimated ─────────────────────────────────────────────
-require('react-native-reanimated/mock');
+try {
+    require('react-native-reanimated/mock');
+} catch (e) {
+    // Optional - some tests may not need this
+    console.warn('react-native-reanimated/mock not available:', e.message);
+}

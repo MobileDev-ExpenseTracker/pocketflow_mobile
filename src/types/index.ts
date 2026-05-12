@@ -18,3 +18,27 @@ export interface IHome {
   loading: boolean;
   error: string | null;
 }
+
+export type TransactionCategory =
+  | "food"
+  | "transport"
+  | "shopping"
+  | "entertainment"
+  | "utilities"
+  | "health"
+  | "other";
+
+export interface ITransaction {
+  id: string;
+  amount: number;
+  category: TransactionCategory;
+  description: string;
+  createdAt: string;
+  rawInput?: string; // Original user input for reference
+}
+
+export interface ITransactionState {
+  transactions: ITransaction[];
+  loading: boolean;
+  error: string | null;
+}
